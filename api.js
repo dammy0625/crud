@@ -60,8 +60,15 @@ router.post("/" ,(req,res)=>{
  })
 
  router.get("/", (req,res)=>{
-     Model.find().sort("name").then((re)=>{
-         res.send(re)
+
+    const ting = req.query.order
+    let val 
+      (ting == -1 ) ? val = -1 : val = 1
+
+     Model.find().sort({name : val}).then((re)=>{
+         res.json(re)
+
+        
      }).catch((h)=>{res.json({error: h})})
  })
 
